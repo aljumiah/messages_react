@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import * as actionTypes from "./actionTypes";
+import { fetchMessages } from "./messages";
 // import { setErrors } from "./errors";
 
 const instance = axios.create({
@@ -46,7 +47,8 @@ export const login = (userData, history) => {
       let user = response.data;
       setAuthToken(user.token);
       let decodedUser = jwt_decode(user.token);
-      dispatch(setCurrentUser(decodedUser));
+      await dispatch(setCurrentUser(decodedUser));
+      await dispatch(fetchMessages());
       history.push("/home");
     } catch (error) {
       console.log("error", error);
@@ -63,6 +65,7 @@ export const signup = (userData, history) => {
       let decodedUser = jwt_decode(user.token);
       setAuthToken(user.token);
       dispatch(setCurrentUser(decodedUser));
+      await dispatch(fetchMessages());
       history.push("/home");
     } catch (err) {
       console.error(err.response);

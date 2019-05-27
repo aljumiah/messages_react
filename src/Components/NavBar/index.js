@@ -42,6 +42,11 @@ class Messages extends Component {
                 <>
                   <li className="nav-item">
                     <NavLink className="nav-link" href="#" to={`/home`}>
+                      {this.props.user.username} <span className="sr-only" />
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" href="#" to={`/home`}>
                       Home <span className="sr-only">(current)</span>
                     </NavLink>
                   </li>
