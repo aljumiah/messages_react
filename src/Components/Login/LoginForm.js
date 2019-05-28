@@ -23,13 +23,13 @@ class LoginForm extends Component {
     return (
       <div>
         <div className="form-group">
-          <label>Email</label>
+          <label>Username</label>
           <input
             type="text"
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            placeholder="Enter Email"
+            placeholder="Enter Username"
             onChange={this.changeHandlerEmail}
           />
         </div>

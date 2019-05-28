@@ -8,7 +8,7 @@ class Messages extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <button
             className="navbar-toggler"
             type="button"
@@ -21,9 +21,6 @@ class Messages extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand" to={`/home`}>
-              wis
-            </Link>
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               {!this.props.user ? (
                 <>
@@ -41,9 +38,9 @@ class Messages extends Component {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink className="nav-link" href="#" to={`/home`}>
+                    <div className="nav-link" href="#">
                       {this.props.user.username} <span className="sr-only" />
-                    </NavLink>
+                    </div>
                   </li>
                   <li className="nav-item">
                     <NavLink className="nav-link" href="#" to={`/home`}>
@@ -52,18 +49,17 @@ class Messages extends Component {
                   </li>
                   <li className="nav-item">
                     <NavLink className="nav-link" href="#" to={`/messages`}>
-                      My Messages
+                      Messages
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <button
+                    <div
+                      style={{ cursor: "pointer" }}
                       onClick={() => this.props.logout(this.props.history)}
                       className="nav-link"
-                      href="#"
-                      to={`/messages`}
                     >
                       Logout
-                    </button>
+                    </div>
                   </li>
                 </>
               )}

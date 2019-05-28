@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-
+import { setInfoMessage, clearInfoMessage } from "./infoMessages";
 // AC
 // import { setErrors } from "./errors";
 
@@ -32,12 +32,14 @@ export const fetchMessages = () => {
 export const sendMessage = (data, history) => {
   console.log("data from reducer", data);
   return async dispatch => {
+    dispatch(clearInfoMessage());
     try {
       // to fetch from api
       let response = await instance.post("message/create/", data);
       // to get data from object reponse
       let message = response.data;
       console.log("meesssage baack", message);
+      dispatch(setInfoMessage("Your message has been sent!"));
       //to send to reducer
     } catch (error) {
       //incase there is an error

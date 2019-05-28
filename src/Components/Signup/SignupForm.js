@@ -35,33 +35,9 @@ class SignupForm extends Component {
     return (
       <form onSubmit={this.submitHandler}>
         <div className="form-group">
-          <label>First Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="firstname"
-            aria-describedby="emailHelp"
-            placeholder=""
-            onChange={this.changeHandlerFirst}
-          />
-        </div>
-        <div className="form-group">
-          <label>Last Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="lastname"
-            aria-describedby="emailHelp"
-            placeholder=""
-            onChange={this.changeHandlerLast}
-          />
-        </div>
-        <div className="form-group">
+          <label>Profile URL that you will share</label>
           <label className="sr-only">Username</label>
           <div className="input-group mb-2">
-            <div className="input-group-prepend">
-              <div className="input-group-text">localhost /</div>
-            </div>
             <input
               type="text"
               className="form-control"
@@ -69,6 +45,10 @@ class SignupForm extends Component {
               placeholder="Username"
               onChange={this.changeHandlerUsername}
             />
+            <div className="col-sm-12">
+              <span>example.com/</span>
+              <span style={{ color: "#2aba14" }}>{this.state.username}</span>
+            </div>
           </div>
         </div>
         <div className="form-group">

@@ -1,21 +1,20 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  username: null,
-  profile: null
+  infoMessage: null
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_USER_OBJ:
+    case actionTypes.SET_INFO_MESSAGE:
       return {
         ...state,
-        username: action.payload
+        infoMessage: action.payload
       };
-    case actionTypes.GET_PROFILE:
+    case actionTypes.CLEAR_INFO_MESSAGE:
       return {
         ...state,
-        profile: action.payload[0]
+        infoMessage: null
       };
     default:
       return state;

@@ -11,10 +11,15 @@ import Sent from "./Components/Sent";
 // Actions
 import * as actionCreators from "./store/actions";
 
+//CSS
+import "./assets/css/GridSystem.css";
+
 class App extends Component {
   async componentDidMount() {
     await this.props.checkForExpiredToken();
-    await this.props.fetchMessages();
+    if (this.props.user) {
+      await this.props.fetchMessages();
+    }
   }
 
   render() {
@@ -34,7 +39,11 @@ class App extends Component {
     );
   }
 }
-
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken()),
@@ -43,7 +52,7 @@ const mapDispatchToProps = dispatch => {
 };
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(App)
 );

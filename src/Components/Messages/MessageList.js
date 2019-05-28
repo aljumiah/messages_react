@@ -4,7 +4,18 @@ import { connect } from "react-redux";
 class MessageList extends Component {
   render() {
     const message = this.props.message;
-    return <ul>{message.content}</ul>;
+    return (
+      <li
+        style={{
+          marginTop: 10,
+          border: "1px solid #00000020",
+          borderRadius: 10
+        }}
+        className="list-group-item"
+      >
+        {message.content}
+      </li>
+    );
   }
 }
 

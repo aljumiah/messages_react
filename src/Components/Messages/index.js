@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import MessageList from "./MessageList";
-import * as actionCreators from "../../store/actions";
+import { Redirect } from "react-router-dom";
 
 class Messages extends Component {
   async componentDidMount() {
@@ -12,12 +12,21 @@ class Messages extends Component {
     const Messages = this.props.messages.map(message => (
       <MessageList message={message} />
     ));
-    return <div>{Messages}</div>;
+    return this.props.user ? (
+      <div className="container">
+        <div className="card" style={{ width: "100%", border: "none" }}>
+          <ul className="list-group list-group-flush">{Messages}</ul>
+        </div>
+      </div>
+    ) : (
+      <Redirect to="/login" />
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
+    user: state.auth.user,
     messages: state.messagesReducer.messages
   };
 };

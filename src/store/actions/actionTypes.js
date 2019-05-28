@@ -7,3 +7,8 @@ export const UPDATE_USER = "UPDATE_USER";
 export const FETCH_MESSAGES = "FETCH_MESSAGES";
 
 export const GET_USER_OBJ = "GET_USER_OBJ";
+
+export const CLEAR_INFO_MESSAGE = "CLEAR_INFO_MESSAGE";
+export const SET_INFO_MESSAGE = "SET_INFO_MESSAGE";
+
+export const GET_PROFILE = "GET_PROFILE";
