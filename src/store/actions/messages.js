@@ -48,3 +48,45 @@ export const sendMessage = (data, history) => {
     }
   };
 };
+
+export const fetchReplays = username => {
+  return async dispatch => {
+    try {
+      // to fetch from api
+      let response = await instance.get(`/replay/list/${username}/`);
+      // to get data from object reponse
+      let replayes = response.data;
+      //to send to reducer
+      console.log("replayes", replayes);
+      dispatch({
+        type: actionTypes.FETCH_REPLAYS,
+        payload: replayes
+      });
+    } catch (error) {
+      //incase there is an error
+      console.error(error);
+      console.log("there is an error ferching the replayes");
+    }
+  };
+};
+
+export const sendReplay = message => {
+  console.log("replay from action:", message);
+  return async dispatch => {
+    dispatch(clearInfoMessage());
+    try {
+      // to fetch from api
+      let response = await instance.post("replay/create/", message);
+      // to get data from object reponse
+      let messageObj = response.data;
+      console.log("replay baack", messageObj);
+      dispatch(fetchMessages());
+      // dispatch(setInfoMessage("Your message has been sent!"));
+      //to send to reducer
+    } catch (error) {
+      //incase there is an error
+      console.error(error);
+      console.log("there is an error sending the replay");
+    }
+  };
+};

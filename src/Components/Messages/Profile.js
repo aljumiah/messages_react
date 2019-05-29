@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import userImage from "../../assets/images/user.jpg";
+import ReplayList from "./ReplayList";
 // import BackgroundImage from "../../assets/images/background_profile.jpg";
 class Profile extends Component {
   state = {
@@ -24,12 +25,16 @@ class Profile extends Component {
     await this.props.getUsername(username);
     if (this.props.username) {
       await this.setState({ user: this.props.username.id });
+      await this.props.fetchReplays(this.props.username.username);
       console.log(username);
       console.log("userBack", this.props.username.id);
     }
   }
   render() {
     const username = this.props.username;
+    const Replays = this.props.replays.map(message => (
+      <ReplayList message={message} />
+    ));
     return this.props.username ? (
       <div className="container">
         <div className="col-sm-12 ">
@@ -96,6 +101,9 @@ class Profile extends Component {
             </form>
           )}
         </div>
+        <div className="card" style={{ width: "100%", border: "none" }}>
+          <ul className="list-group list-group-flush">{Replays}</ul>
+        </div>
       </div>
     ) : (
       <div>this profile does not exist</div>
@@ -106,7 +114,8 @@ class Profile extends Component {
 const mapStateToProps = state => {
   return {
     username: state.profileReducer.username,
-    infoMessage: state.infoMessageReducer.infoMessage
+    infoMessage: state.infoMessageReducer.infoMessage,
+    replays: state.messagesReducer.replays
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -114,7 +123,8 @@ const mapDispatchToProps = dispatch => {
     getUsername: username => dispatch(actionCreators.getUsername(username)),
     clearInfoMessage: () => dispatch(actionCreators.clearInfoMessage()),
     sendMessage: (data, history) =>
-      dispatch(actionCreators.sendMessage(data, history))
+      dispatch(actionCreators.sendMessage(data, history)),
+    fetchReplays: username => dispatch(actionCreators.fetchReplays(username))
   };
 };
 export default connect(

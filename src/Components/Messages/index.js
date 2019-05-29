@@ -10,7 +10,7 @@ class Messages extends Component {
   }
   render() {
     const Messages = this.props.messages.map(message => (
-      <MessageList message={message} />
+      <MessageList message={message} key={message.id} />
     ));
     return this.props.user ? (
       <div className="container">

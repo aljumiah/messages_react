@@ -12,3 +12,5 @@ export const CLEAR_INFO_MESSAGE = "CLEAR_INFO_MESSAGE";
 export const SET_INFO_MESSAGE = "SET_INFO_MESSAGE";
 
 export const GET_PROFILE = "GET_PROFILE";
+
+export const FETCH_REPLAYS = "FETCH_REPLAYS";
