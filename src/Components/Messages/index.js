@@ -9,13 +9,33 @@ class Messages extends Component {
     console.log(this.props.messages);
   }
   render() {
-    const Messages = this.props.messages.map(message => (
-      <MessageList message={message} key={message.id} />
-    ));
+    const Messages = this.props.messages.map(
+      message =>
+        !message.replied_message && (
+          <MessageList message={message} key={message.id} />
+        )
+    );
+    const MessagesReplied = this.props.messages.map(
+      message =>
+        message.replied_message && (
+          <MessageList message={message} key={message.id} />
+        )
+    );
     return this.props.user ? (
       <div className="container">
         <div className="card" style={{ width: "100%", border: "none" }}>
-          <ul className="list-group list-group-flush">{Messages}</ul>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item list-group-item-primary mt-4">
+              New
+            </li>
+            {Messages}
+          </ul>
+        </div>
+        <div className="card" style={{ width: "100%", border: "none" }}>
+          <ul className="list-group list-group-flush mt-4">
+            <li className="list-group-item list-group-item-success">Replied</li>
+            {MessagesReplied}
+          </ul>
         </div>
       </div>
     ) : (

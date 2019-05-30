@@ -90,3 +90,22 @@ export const sendReplay = message => {
     }
   };
 };
+
+export const deleteMessage = id => {
+  return async dispatch => {
+    try {
+      // to fetch from api
+      let response = await instance.delete(`message/delete/${id}/`);
+      // to get data from object reponse
+      let deletedMessageObj = response.data;
+      console.log("message_deleted", deletedMessageObj);
+      dispatch(fetchMessages());
+      // dispatch(setInfoMessage("Your message has been sent!"));
+      //to send to reducer
+    } catch (error) {
+      //incase there is an error
+      console.error(error);
+      console.log("there is an error deleting the message");
+    }
+  };
+};

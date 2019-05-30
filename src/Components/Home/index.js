@@ -18,6 +18,7 @@ class Home extends Component {
         <div className="col-sm-12 ">
           <div className="col-sm-12 d-flex justify-content-center">
             <img
+              alt="profile-image"
               className="rounded-circle rounded-circle_border border"
               src={userImage}
               style={{

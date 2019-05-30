@@ -4,7 +4,8 @@ export {
   fetchMessages,
   sendMessage,
   fetchReplays,
-  sendReplay
+  sendReplay,
+  deleteMessage
 } from "./messages";
 export { getUsername, getProfile } from "./profile";
 export { setInfoMessage, clearInfoMessage } from "./infoMessages";
